@@ -1,70 +1,49 @@
 var up = document.getElementById('up');
 var down = document.getElementById('down');
 var skil = document.getElementById('skil');
-var project = document.getElementById('list_project');
+var projectt = document.getElementById('list_project');
 // project
-const list_skils = ["HTML", "TAILWINDCSS"]
+const list_skils = ["HTML", "TAILWINDCSS", "PHP"]
 const projects = {
-    HTML : ['PROJECT','HTML'],
-    TAILWINDCSS : ['PROJECT','TAILWINDCSS']
+    'HTML' : ['PROJECT','HTML'],
+    'TAILWINDCSS' : ['PROJECT','TAILWINDCSS','walaupun'],
+    'PHP' : ['PROJECT','PHP']
 }
 
-var y = 0
-// while (y < list_skils.length){
-//     console.log(list_skils[y])
-//     console.log(projects[y] + " - ")
-//     if(list_skils[y] === projects[y]){
-//     }
-//     y++;
-// }
-for(let [proj, value] of Object.entries(projects) ){
-    // console.log(proj + " = " + value)
-    while(y <= list_skils.length){
-        if(proj == list_skils[y]){
-            console.log("gasss")
-            for(let val in list_skils){
-                console.log(value[val])
-            }
-        }
-        console.log(y)
-        y++;
+function displayProjects(skill) {
+    projectt.innerHTML = '';
+    let project = projects[skill]; // Ambil array proyek yang terkait dengan skill saat ini
+
+    if (project) {
+        console.log(`Projects for ${skill}:`);
+        project.forEach(proj => {
+            console.log(`- ${proj}`);
+            const li = document.createElement('li');
+            li.textContent = `${proj}`
+            projectt.appendChild(li)
+        });
+    } else {
+        console.log(`No projects found for ${skill}`);
     }
-    // console.log(value)
-    // project.innerText =  value
-    // list_skils.forEach(skill => {
-    //     console.log(`name : ${skill} = `, projects[skill])
-    //     // if()
-    // })
-}
-// list_skils.forEach(skill => {
-//     if (projects[skill]) {
-//         // console.log(`Projects for ${skill}:`, projects[skill]);
-//         projects[skill].forEach((proj, index) => {
-//             project.innerText = `  ${index + 1}. ${proj}`;
-//             console.log(`  ${index + 1}. ${proj}`)
-//         });
-//     } else {
-//         console.log(`No projects found for ${skill}`);
-//     }
-// });
-function ceklist() {
-
 }
 var i = 0;
-// MASUKKAN SKILL KE DALAM LIST
-
+skil.innerText = list_skils[i]
 up.addEventListener('click', ()=>{
-    if(i == list_skils.length - 1){
-        return; 
+    
+    if(i == list_skils.length -1){
+        false; 
     } else {
-        skil.innerText = list_skils[++i];
+        var p = list_skils[++i]
+        displayProjects(p)
+        // console.log(+i)
     }
 })
 
 down.addEventListener('click', ()=>{
-    if(i === 0){
-        return; 
-    } else {
-        skil.innerText = list_skils[--i];
+    if(i <= 0){
+        false;
+    }else{
+        console.log(--i)
+        displayProjects(p)
     }
 })
